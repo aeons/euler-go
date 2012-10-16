@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"sort"
 	"strconv"
 	"time"
 )
@@ -22,8 +23,17 @@ func main() {
 
 	if solveAll {
 		fmt.Printf("Solving %d problems that currently have solutions.\n", len(solvers))
-		for number, solver := range solvers {
-			solve(number, solver)
+
+		keys := make([]int, len(solvers))
+		i := 0
+		for k := range solvers {
+			keys[i] = k
+			i++
+		}
+		sort.IntSlice(keys).Sort()
+
+		for _, number := range keys {
+			solve(number, solvers[number])
 		}
 		os.Exit(0)
 	}
@@ -69,5 +79,5 @@ func solve(n int, s Solver) {
 	solution := s()
 	ttotal := time.Since(t0)
 
-	fmt.Printf("Solution for problem %d: %d found in %v\n", n, solution, ttotal)
+	fmt.Printf("Solution for problem %3d: %12d found in %v\n", n, solution, ttotal)
 }
