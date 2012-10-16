@@ -7,11 +7,7 @@ import (
 	"time"
 )
 
-type Problem struct{}
-
-type Solver interface {
-	Solve() int
-}
+type Solver func() int
 
 var (
 	solvers map[int]Solver = make(map[int]Solver)
@@ -49,7 +45,7 @@ func main() {
 	}
 
 	t0 := time.Now()
-	solution := solver.Solve()
+	solution := solver()
 	ttotal := time.Since(t0)
 
 	fmt.Printf("Solution for problem %d: %d found in %v\n", problemNumber, solution, ttotal)

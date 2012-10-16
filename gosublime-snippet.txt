@@ -3,7 +3,7 @@
         {
             "match": {"global": true, "pkgname": ""},
             "snippets": [
-                {"text": "templprob", "title": "problem template", "value": "package main\n\ntype Problem$0 struct{}\n\nfunc init() {\n\tsolvers[1] = new(Problem$0)\n}\n\nfunc (p *Problem$0) Solve() (solution int) {\n\treturn\n}\n"}
+                {"text": "templprob", "title": "problem template", "value": "package main\n\nfunc init() {\n\tsolvers[$0] = Solve$0\n}\n\nfunc Solve$0() (solution int) {\n\treturn\n}\n"}
             ]
         }
     ]
