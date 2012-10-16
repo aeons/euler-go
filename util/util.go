@@ -22,20 +22,19 @@ func Sieve(max int) chan int {
 	}
 	sieve[1] = 0
 
-	p := 2
-	for p < max {
+	for p := 2; p < max; p++ {
 		// Find starting point
-		for sieve[p] == 0 {
+		for p < max && sieve[p] == 0 {
 			p++
+		}
+		if p == max {
+			break
 		}
 
 		// Mark multiples
-		for i := 2 * p; i < max; i = i + p {
+		for i := p * p; i < max; i = i + p {
 			sieve[i] = 0
 		}
-
-		// Ready to find next starting point
-		p *= p
 	}
 
 	c := make(chan int)
