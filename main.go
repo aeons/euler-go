@@ -30,7 +30,7 @@ func main() {
 			keys[i] = k
 			i++
 		}
-		sort.IntSlice(keys).Sort()
+		sort.Ints(keys)
 
 		for _, number := range keys {
 			solve(number, solvers[number])
