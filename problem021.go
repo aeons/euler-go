@@ -12,7 +12,7 @@ func Solve21() (solution int) {
 	divisors := func(n int) []int {
 		// 1 and n
 		d := []int{1}
-		for i := 2; i < int(math.Sqrt(float64(n))); i++ {
+		for i := 2; i <= int(math.Sqrt(float64(n))); i++ {
 			if n%i == 0 {
 				div := n / i
 				if i == div {
