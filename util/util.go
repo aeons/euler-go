@@ -41,10 +41,23 @@ func Sieve(max int) chan int {
 	go func() {
 		for i := 2; i < max; i++ {
 			if prime := sieve[i]; prime != 0 {
-				c <- sieve[i]
+				c <- prime
 			}
 		}
 		close(c)
+	}()
+	return c
+}
+
+func Triangles() chan int {
+	c := make(chan int)
+	go func() {
+		t, i := 0, 1
+		for {
+			t += i
+			i++
+			c <- t
+		}
 	}()
 	return c
 }
